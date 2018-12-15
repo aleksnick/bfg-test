@@ -5,6 +5,7 @@ export default interface IQuestion {
   order: number;
   title: string;
   score: number;
+  creation_date: number;
   is_answered: boolean;
   owner: IUser;
 }

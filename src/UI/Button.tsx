@@ -1,7 +1,9 @@
 import React from "react";
 import UIButton from "@material-ui/core/Button";
 
-export interface ButtonProps {}
+export interface ButtonProps {
+  onClick?: () => void;
+}
 
 export class Button extends React.Component<ButtonProps> {
   /**
@@ -12,9 +14,10 @@ export class Button extends React.Component<ButtonProps> {
   }
 
   render() {
+    const { onClick, children } = this.props;
     return (
-      <UIButton color="primary" variant="outlined">
-        Add
+      <UIButton onClick={onClick} color="primary" variant="outlined">
+        {children}
       </UIButton>
     );
   }

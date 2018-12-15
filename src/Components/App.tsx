@@ -3,22 +3,24 @@ import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import QuestionsList from "./QuestionsList";
-import QuestionsLoader from "./QuestionsLoader";
+import QuestionsLoaderHelper from "../Helpers/QuestionsLoader";
 import DateControl from "./DateControl";
 import IStore from "../Models/IStore";
 import { SetData } from "../Actions/SetData";
+import { SetDate } from "../Actions/SetDate";
 
 export interface AppProps {}
 
 export type AppInputs = AppProps & IStore;
 
-const mapStateToProps = (state: IStore, panelProps: AppProps) => ({
+const mapStateToProps = (state: IStore, props: AppProps) => ({
   date: state.date,
   data: state.data
 });
 
 const mapDispatchToProps = {
-  setData: SetData
+  setData: SetData,
+  setDate: SetDate
 };
 
 export type AppContext = AppInputs & typeof mapDispatchToProps;
@@ -31,15 +33,18 @@ export class App extends React.Component<AppContext> {
     super(props);
   }
 
+  componentWillMount() {
+    this.loadData(this.props.date);
+  }
+
   render() {
-    const { data, date, setData } = this.props;
+    const { data, date } = this.props;
     return (
       <Grid justify="center" container spacing={16}>
         <Grid item xs={4}>
           <Grid justify="flex-start" container>
-            <DateControl date={date} />
+            <DateControl date={date} onSetDate={this.loadData} />
           </Grid>
-          <QuestionsLoader date={date} onLoad={setData} />
           <Paper>
             <QuestionsList questions={data} />
           </Paper>
@@ -47,6 +52,14 @@ export class App extends React.Component<AppContext> {
       </Grid>
     );
   }
+
+  loadData = (date: string) => {
+    const { setData, setDate } = this.props;
+    QuestionsLoaderHelper.load(date, data => {
+      setDate(date);
+      setData(data);
+    });
+  };
 }
 
 export default connect(

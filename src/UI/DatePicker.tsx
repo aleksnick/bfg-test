@@ -47,7 +47,11 @@ export class DatePicker extends React.Component<DatePickerProps> {
   }
 
   onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("date change", e.currentTarget.value);
+    const onChange = this.props.onChange;
+    if (onChange) {
+      const newDate = e.currentTarget.value;
+      onChange(newDate);
+    }
   };
 }
 
