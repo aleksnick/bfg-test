@@ -1,41 +1,54 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
-const styles = theme => ({
+const styles = {
   container: {
-    display: "flex",
-    flexWrap: "wrap"
+    display: "flex"
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: 10,
+    marginRight: 10,
     width: 200
   }
-});
-
-function DatePickers(props) {
-  const { classes } = props;
-
-  return (
-    <form className={classes.container} noValidate>
-      <TextField
-        id="date"
-        label="Birthday"
-        type="date"
-        defaultValue="2017-05-24"
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true
-        }}
-      />
-    </form>
-  );
-}
-
-DatePickers.propTypes = {
-  classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(DatePickers);
+export interface DatePickerProps {
+  date: string;
+  onChange?: (date: string) => void;
+}
+
+export class DatePicker extends React.Component<DatePickerProps> {
+  /**
+   *
+   */
+  constructor(props: DatePickerProps) {
+    super(props);
+  }
+
+  render() {
+    const { date } = this.props;
+    return (
+      <form className="container" noValidate>
+        <TextField
+          id="date"
+          label="Questions start date"
+          type="date"
+          defaultValue={date}
+          onChange={this.onChange}
+          className="textfield"
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
+        {this.props.children}
+      </form>
+    );
+  }
+
+  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("date change", e.currentTarget.value);
+  };
+}
+
+export default withStyles(styles)(DatePicker);

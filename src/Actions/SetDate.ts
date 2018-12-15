@@ -1,11 +1,11 @@
 import IAction from "../Models/IAction";
+import IDate from "../Models/IDate";
 
-export interface ISetDate extends IAction {
+export interface ISetDate extends IAction, IDate {
   type: "SET_DATE";
-  date: Date;
 }
 
-export const SetDate = (date: Date): ISetDate => ({
+export const SetDate = (date: string): ISetDate => ({
   type: "SET_DATE",
   date: date
 });

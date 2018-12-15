@@ -1,4 +1,6 @@
 var path = require("path");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -32,5 +34,20 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
+  },
+  plugins: [new BundleAnalyzerPlugin()],
+  externals: {
+    react: "React",
+    redux: "Redux",
+    axios: "axios",
+    "react-dom": "ReactDOM",
+    "react-redux": "React-Redux",
+    immutable: "immutable",
+    "@material-ui/core": {
+      root: "@material-ui/core",
+      amd: "@material-ui/core",
+      commonjs: "@material-ui/core",
+      commonjs2: "@material-ui/core"
+    }
   }
 };

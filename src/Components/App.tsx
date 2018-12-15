@@ -4,12 +4,13 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import QuestionsList from "./QuestionsList";
 import QuestionsLoader from "./QuestionsLoader";
+import DateControl from "./DateControl";
 import IStore from "../Models/IStore";
 import { SetData } from "../Actions/SetData";
 
 export interface AppProps {}
 
-export type AppContext = AppProps & IStore;
+export type AppInputs = AppProps & IStore;
 
 const mapStateToProps = (state: IStore, panelProps: AppProps) => ({
   date: state.date,
@@ -20,13 +21,13 @@ const mapDispatchToProps = {
   setData: SetData
 };
 
-export type AppState = AppContext & typeof mapDispatchToProps;
+export type AppContext = AppInputs & typeof mapDispatchToProps;
 
-export class App extends React.Component<AppState> {
+export class App extends React.Component<AppContext> {
   /**
    *
    */
-  constructor(props: AppState) {
+  constructor(props: AppContext) {
     super(props);
   }
 
@@ -35,7 +36,10 @@ export class App extends React.Component<AppState> {
     return (
       <Grid justify="center" container spacing={16}>
         <Grid item xs={4}>
-          <QuestionsLoader fromDate={date} onLoad={setData} />
+          <Grid justify="flex-start" container>
+            <DateControl date={date} />
+          </Grid>
+          <QuestionsLoader date={date} onLoad={setData} />
           <Paper>
             <QuestionsList questions={data} />
           </Paper>

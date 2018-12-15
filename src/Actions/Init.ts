@@ -8,6 +8,6 @@ export interface IInit extends IAction, IStore {
 
 export const Init = (): IInit => ({
   type: "INIT",
-  date: new Date("2018-12-01"),
+  date: "2018-12-01",
   data: new Array<IQuestion>()
 });

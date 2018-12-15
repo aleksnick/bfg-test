@@ -12,7 +12,7 @@ export default function init(state = Map(), action: Actions) {
     case "SET_DATA":
       return {
         ...state,
-        data: action.questions
+        data: action.data
       };
     case "SET_DATE":
       return {
