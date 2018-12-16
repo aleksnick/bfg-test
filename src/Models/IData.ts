@@ -1,5 +1,11 @@
-import IQuestion from "./IQuestion";
+import { Questions } from "./IQuestion";
 
+/**
+ * Данные
+ *
+ * @export
+ * @interface IData
+ */
 export default interface IData {
-  data: Array<IQuestion>;
+  data: Questions;
 }

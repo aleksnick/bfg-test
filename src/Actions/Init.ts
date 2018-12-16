@@ -1,7 +1,14 @@
 import IAction from "../Models/IAction";
 import IStore from "../Models/IStore";
-import IQuestion from "../Models/IQuestion";
 
+/**
+ * Инициализация приложения
+ *
+ * @export
+ * @interface IInit
+ * @extends {IAction}
+ * @extends {IStore}
+ */
 export interface IInit extends IAction, IStore {
   type: "INIT";
 }
@@ -9,5 +16,5 @@ export interface IInit extends IAction, IStore {
 export const Init = (): IInit => ({
   type: "INIT",
   date: "2018-12-01",
-  data: new Array<IQuestion>()
+  data: {}
 });

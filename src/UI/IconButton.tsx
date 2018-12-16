@@ -17,6 +17,13 @@ const styles = {
   }
 };
 
+/**
+ * Кнопка с иконкой
+ *
+ * @export
+ * @class IconButton
+ * @extends {React.Component<IconButtonProps>}
+ */
 export class IconButton extends React.Component<IconButtonProps> {
   constructor(props: IconButtonProps) {
     super(props);

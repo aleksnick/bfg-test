@@ -14,6 +14,13 @@ export interface AvatarProps extends IWithStyles {
   src?: string;
 }
 
+/**
+ * Изображение пользователя
+ *
+ * @export
+ * @class Avatar
+ * @extends {React.Component<AvatarProps>}
+ */
 export class Avatar extends React.Component<AvatarProps> {
   constructor(props: AvatarProps) {
     super(props);

@@ -5,10 +5,11 @@ import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import IQuestion from "../Models/IQuestion";
 import { Size } from "../Models/Size";
 import UserInfo from "./UserInfo";
-import Panel from "../UI/Panel";
+import Panel, { PanelType } from "../UI/Panel";
 import Chip from "../UI/Chip";
 import { ButtonColor } from "../UI/Button";
 import IconButton from "../UI/IconButton";
+import QuestionDetails from "./QuestionDetails";
 
 export interface QuestionProps {
   isOpen: boolean;
@@ -17,6 +18,13 @@ export interface QuestionProps {
   onExpanded?: (expanded: boolean) => void;
 }
 
+/**
+ * Компонент для отображения вопроса
+ *
+ * @export
+ * @class Question
+ * @extends {React.Component<QuestionProps>}
+ */
 export default class Question extends React.Component<QuestionProps> {
   constructor(props: QuestionProps) {
     super(props);
@@ -39,24 +47,32 @@ export default class Question extends React.Component<QuestionProps> {
     return (
       <Panel
         isOpen={isOpen}
+        type={question.is_answered ? PanelType.Success : PanelType.Default}
         onExpanded={this.onExpanded}
         header={question.title}
         controls={controls}
       >
-        <UserInfo user={question.owner} />
+        <Grid container spacing={16}>
+          <Grid item>
+            <UserInfo user={question.owner} />
+          </Grid>
+          <Grid item xs>
+            <QuestionDetails question={question} />
+          </Grid>
+        </Grid>
       </Panel>
     );
   }
 
   scoreUp = () => {
-    const {question, onChangeScore} = this.props;
+    const { question, onChangeScore } = this.props;
     if (onChangeScore) {
       onChangeScore(question.score + 1);
     }
   };
 
   scoreDown = () => {
-    const {question, onChangeScore} = this.props;
+    const { question, onChangeScore } = this.props;
     if (question.score > 0 && onChangeScore) {
       onChangeScore(question.score - 1);
     }

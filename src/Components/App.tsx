@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import QuestionsList from "./QuestionsList";
 import QuestionsLoaderHelper from "../Helpers/QuestionsLoader";
@@ -25,6 +26,13 @@ const mapDispatchToProps = {
 
 export type AppContext = AppInputs & typeof mapDispatchToProps;
 
+/**
+ * Основной компонент приложения
+ *
+ * @export
+ * @class App
+ * @extends {React.Component<AppContext>}
+ */
 export class App extends React.Component<AppContext> {
   constructor(props: AppContext) {
     super(props);
@@ -37,21 +45,31 @@ export class App extends React.Component<AppContext> {
   render() {
     const { data, date } = this.props;
     return (
-      <Grid justify="center" container spacing={16}>
-        <Grid item xs={4}>
-          <Grid justify="flex-start" container>
-            <DateControl date={date} onSetDate={this.loadData} />
+      <React.Fragment>
+        <Grid justify="center" container spacing={16}>
+          <Grid item xs={4}>
+            <Typography variant="h6">
+              5 самых популярных вопросов на Stackoverflow, содержащих строку
+              "react-redux"
+            </Typography>
           </Grid>
-          <Grid justify="flex-start" container>
-            <Grid item xs={12}>
-              <QuestionsList
-                questions={data}
-                onChangeScore={this.onChangeScore}
-              />
+        </Grid>
+        <Grid justify="center" container spacing={16}>
+          <Grid item xs={4}>
+            <Grid justify="flex-start" container>
+              <DateControl date={date} onSetDate={this.loadData} />
+            </Grid>
+            <Grid justify="flex-start" container>
+              <Grid item xs={12}>
+                <QuestionsList
+                  questions={data}
+                  onChangeScore={this.onChangeScore}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </React.Fragment>
     );
   }
 

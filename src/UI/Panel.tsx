@@ -1,4 +1,6 @@
 import React from "react";
+import IWithStyles from "../Models/IWithStyles";
+import { withStyles } from "@material-ui/core/styles";
 import UIPanel from "@material-ui/core/ExpansionPanel";
 import UIPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import UIPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -6,31 +8,48 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
-export interface PanelProps {
+export enum PanelType {
+  Default = "default",
+  Success = "success"
+}
+
+const styles = {
+  success: {
+    background: "#4caf50"
+  }
+};
+
+/**
+ * Панель
+ *
+ * @export
+ * @interface PanelProps
+ * @extends {IWithStyles}
+ */
+export interface PanelProps extends IWithStyles {
   isOpen?: boolean;
+  type?: PanelType;
   header?: React.ReactNode;
   controls?: React.ReactNode;
   onExpanded?: (expanded: boolean) => void;
 }
 
-export default class Panel extends React.Component<PanelProps> {
+export class Panel extends React.Component<PanelProps> {
   constructor(props: PanelProps) {
     super(props);
   }
 
   render() {
-    const { isOpen, header, controls, children } = this.props;
+    const { type, classes, isOpen, header, controls, children } = this.props;
 
     return (
       <UIPanel expanded={!!isOpen} onChange={this.onChange} color="primary">
-        <UIPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <UIPanelSummary className={type === PanelType.Success ? classes["success"] : null} expandIcon={<ExpandMoreIcon />}>
           <Grid container xs={12}>
             <Grid item xs>
               <Typography>{header}</Typography>
             </Grid>
-            <Grid item>
-              {controls}
-            </Grid>
+            <Grid item>{controls}</Grid>
           </Grid>
         </UIPanelSummary>
         <UIPanelDetails>{children}</UIPanelDetails>
@@ -45,3 +64,5 @@ export default class Panel extends React.Component<PanelProps> {
     }
   };
 }
+
+export default withStyles(styles)(Panel);

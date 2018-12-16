@@ -8,10 +8,14 @@ export interface UserInfoProps {
   user: IUser;
 }
 
+/**
+ * Компонент для отображения информации о пользователе
+ *
+ * @export
+ * @class UserInfo
+ * @extends {React.Component<UserInfoProps>}
+ */
 export default class UserInfo extends React.Component<UserInfoProps> {
-  /**
-   *
-   */
   constructor(props: UserInfoProps) {
     super(props);
   }
@@ -23,7 +27,7 @@ export default class UserInfo extends React.Component<UserInfoProps> {
         <Grid item>
           <Avatar src={user.profile_image} />
         </Grid>
-        <Grid item xs>
+        <Grid item xs spacing={16}>
           <Grid container>{user.display_name}</Grid>
           <Grid container>
             <Button

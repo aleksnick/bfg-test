@@ -13,6 +13,13 @@ export interface DateControlState {
   newDate: string;
 }
 
+/**
+ * Компонент выбора даты с кнопкой применить
+ *
+ * @export
+ * @class DateControl
+ * @extends {React.Component<DateControlProps, DateControlState>}
+ */
 export default class DateControl extends React.Component<
   DateControlProps,
   DateControlState

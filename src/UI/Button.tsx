@@ -26,6 +26,13 @@ export interface ButtonProps extends SimpleButtonProps {
   size?: Size;
 }
 
+/**
+ * Кнопка
+ *
+ * @export
+ * @class Button
+ * @extends {React.Component<ButtonProps>}
+ */
 export default class Button extends React.Component<ButtonProps> {
   constructor(props: ButtonProps) {
     super(props);

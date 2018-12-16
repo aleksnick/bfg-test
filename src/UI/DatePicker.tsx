@@ -21,10 +21,14 @@ export interface DatePickerProps extends IWithStyles {
   onChange?: (date: string) => void;
 }
 
+/**
+ * Компонент выбора даты
+ *
+ * @export
+ * @class DatePicker
+ * @extends {React.Component<DatePickerProps>}
+ */
 export class DatePicker extends React.Component<DatePickerProps> {
-  /**
-   *
-   */
   constructor(props: DatePickerProps) {
     super(props);
   }

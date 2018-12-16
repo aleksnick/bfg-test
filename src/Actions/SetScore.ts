@@ -1,5 +1,12 @@
 import IAction from "../Models/IAction";
 
+/**
+ * Изменение рейтинга вопроса
+ *
+ * @export
+ * @interface ISetScore
+ * @extends {IAction}
+ */
 export interface ISetScore extends IAction {
   type: "SET_SCORE";
   questionId: number;

@@ -1,10 +1,10 @@
 import React from "react";
 import clickOutside from "react-click-outside";
-import IQuestion from "../Models/IQuestion";
+import { Questions } from "../Models/IQuestion";
 import Question from "./Question";
 
 export interface QuestionsListProps {
-  questions: Array<IQuestion>;
+  questions: Questions;
   onChangeScore?: (questionId: number, score: number) => void;
 }
 
@@ -12,6 +12,13 @@ export interface QuestionsListState {
   openQuestionIndex: number;
 }
 
+/**
+ * Компонент для отображения списка вопросов
+ *
+ * @export
+ * @class QuestionsList
+ * @extends {React.Component<QuestionsListProps, QuestionsListState>}
+ */
 export class QuestionsList extends React.Component<
   QuestionsListProps,
   QuestionsListState
@@ -28,17 +35,24 @@ export class QuestionsList extends React.Component<
   }
 
   renderList = (): React.ReactNode[] => {
-    return this.props.questions.map((question, questionIndex) => {
-      return (
+    const questions = this.props.questions;
+    let list = Array<React.ReactNode>();
+    for (let key in questions) {
+      const question = questions[key];
+      const questionId = question.question_id;
+      list.push(
         <Question
-          key={question.question_id}
-          isOpen={questionIndex == this.state.openQuestionIndex}
+          key={questionId}
+          isOpen={questionId == this.state.openQuestionIndex}
           question={question}
-          onChangeScore={score => this.onChangeScore(question.question_id, score)}
-          onExpanded={expanded => this.onExpanded(questionIndex, expanded)}
+          onChangeScore={score =>
+            this.onChangeScore(questionId, score)
+          }
+          onExpanded={expanded => this.onExpanded(questionId, expanded)}
         />
-      );
-    });
+      )
+    }
+    return list;
   };
 
   onExpanded = (questionIndex: number, expanded: boolean) => {
