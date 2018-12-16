@@ -1,4 +1,4 @@
-# BFG Grouo Test Work
+# BFG Group Test Work
 Test app with react-redux
 
 ## Usage local
