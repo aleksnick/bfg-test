@@ -2,8 +2,10 @@ import React from "react";
 import clickOutside from "react-click-outside";
 import IQuestion from "../Models/IQuestion";
 import Question from "./Question";
+
 export interface QuestionsListProps {
   questions: Array<IQuestion>;
+  onChangeScore?: (questionId: number, score: number) => void;
 }
 
 export interface QuestionsListState {
@@ -29,9 +31,10 @@ export class QuestionsList extends React.Component<
     return this.props.questions.map((question, questionIndex) => {
       return (
         <Question
-          key={question.id}
+          key={question.question_id}
           isOpen={questionIndex == this.state.openQuestionIndex}
           question={question}
+          onChangeScore={score => this.onChangeScore(question.question_id, score)}
           onExpanded={expanded => this.onExpanded(questionIndex, expanded)}
         />
       );
@@ -42,6 +45,13 @@ export class QuestionsList extends React.Component<
     this.setState({
       openQuestionIndex: expanded ? questionIndex : -1
     });
+  };
+
+  onChangeScore = (questionId: number, score: number) => {
+    const onChangeScore = this.props.onChangeScore;
+    if (onChangeScore) {
+      onChangeScore(questionId, score);
+    }
   };
 
   handleClickOutside = () => {

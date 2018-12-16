@@ -1,10 +1,12 @@
 import React from "react";
+import IWithStyles from "../Models/IWithStyles";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 const styles = {
   container: {
-    display: "flex"
+    display: "flex",
+    margin: 10
   },
   textField: {
     marginLeft: 10,
@@ -13,7 +15,8 @@ const styles = {
   }
 };
 
-export interface DatePickerProps {
+export interface DatePickerProps extends IWithStyles {
+  label: string;
   date: string;
   onChange?: (date: string) => void;
 }
@@ -27,16 +30,16 @@ export class DatePicker extends React.Component<DatePickerProps> {
   }
 
   render() {
-    const { date } = this.props;
+    const { classes, label, date } = this.props;
     return (
-      <form className="container" noValidate>
+      <form className={classes["container"]} noValidate>
         <TextField
           id="date"
-          label="Questions start date"
+          label={label}
           type="date"
           defaultValue={date}
           onChange={this.onChange}
-          className="textfield"
+          className={classes["textField"]}
           InputLabelProps={{
             shrink: true
           }}

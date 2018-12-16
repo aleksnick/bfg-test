@@ -4,12 +4,12 @@ import UIPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import UIPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 export interface PanelProps {
   isOpen?: boolean;
   header?: React.ReactNode;
   controls?: React.ReactNode;
-  content?: React.ReactNode;
   onExpanded?: (expanded: boolean) => void;
 }
 
@@ -24,8 +24,14 @@ export default class Panel extends React.Component<PanelProps> {
     return (
       <UIPanel expanded={!!isOpen} onChange={this.onChange} color="primary">
         <UIPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>{header}</Typography>
-          {controls}
+          <Grid container xs={12}>
+            <Grid item xs>
+              <Typography>{header}</Typography>
+            </Grid>
+            <Grid item>
+              {controls}
+            </Grid>
+          </Grid>
         </UIPanelSummary>
         <UIPanelDetails>{children}</UIPanelDetails>
       </UIPanel>
@@ -37,5 +43,5 @@ export default class Panel extends React.Component<PanelProps> {
     if (onExpanded) {
       onExpanded(expanded);
     }
-  }
+  };
 }

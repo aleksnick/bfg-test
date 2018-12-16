@@ -1,13 +1,17 @@
 import { Map } from "immutable";
 import { Actions } from "../Actions";
+import IStore from "../Models/IStore";
+import QuestionsScoreHelper from "../Helpers/QuestionsScore";
 
-export default function init(state = Map(), action: Actions) {
+export default function reducer(state: IStore, action: Actions) {
   switch (action.type) {
     case "INIT":
+      const newStore = Map();
       return {
-        ...state,
+        ...newStore,
         data: action.data,
-        date: action.date
+        date: action.date,
+        update: 0
       };
     case "SET_DATA":
       return {
@@ -19,6 +23,17 @@ export default function init(state = Map(), action: Actions) {
         ...state,
         date: action.date
       };
+    case "SET_SCORE":
+      const newState = QuestionsScoreHelper.setScore(
+        state,
+        action.questionId,
+        action.score
+      );
+      return {
+        ...newState,
+        update: new Date().getTime()
+      };
+
     default:
       return state;
   }

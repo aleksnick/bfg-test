@@ -1,4 +1,5 @@
 import React from "react";
+import IWithStyles from "../Models/IWithStyles";
 import { withStyles } from "@material-ui/core/styles";
 import UIAvatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
@@ -9,22 +10,20 @@ const styles = {
   }
 };
 
-export interface AvatarProps {
+export interface AvatarProps extends IWithStyles {
   src?: string;
 }
 
 export class Avatar extends React.Component<AvatarProps> {
-  /**
-   *
-   */
   constructor(props: AvatarProps) {
     super(props);
   }
 
   render() {
+    const { classes, src } = this.props;
     return (
       <Grid container justify="center" alignItems="center">
-        <UIAvatar className="avatar" src={this.props.src} />
+        <UIAvatar className={classes["avatar"]} src={src} />
       </Grid>
     );
   }

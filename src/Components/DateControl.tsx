@@ -1,7 +1,8 @@
 import React from "react";
 import IDate from "../Models/IDate";
 import DatePicker from "../UI/DatePicker";
-import Button from "../UI/Button";
+import { Size } from "../Models/Size";
+import Button, { ButtonVariant, ButtonColor } from "../UI/Button";
 
 export interface DateControlProps extends IDate {
   onSetDate?: (date: string) => void;
@@ -16,9 +17,6 @@ export default class DateControl extends React.Component<
   DateControlProps,
   DateControlState
 > {
-  /**
-   *
-   */
   constructor(props: DateControlProps) {
     super(props);
     this.state = {
@@ -29,18 +27,23 @@ export default class DateControl extends React.Component<
 
   render() {
     return (
-      <DatePicker date={this.state.newDate} onChange={this.onChangeDate}>
-        {this.renderButton()}
+      <DatePicker
+        label="Дата начала"
+        date={this.state.newDate}
+        onChange={this.onChangeDate}
+      >
+        <Button
+          size={Size.Large}
+          color={ButtonColor.Primary}
+          variant={ButtonVariant.Contained}
+          disabled={!this.state.showChangeButton}
+          onClick={this.onClickButton}
+        >
+          Показать вопросы
+        </Button>
       </DatePicker>
     );
   }
-
-  renderButton = () => {
-    if (!this.state.showChangeButton) {
-      return null;
-    }
-    return <Button onClick={this.onClickButton}>Change Date</Button>;
-  };
 
   onChangeDate = (newDate: string) => {
     this.setState({

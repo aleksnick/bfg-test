@@ -1,7 +1,7 @@
 import IUser from "./IUser";
 
 export default interface IQuestion {
-  id: string;
+  question_id: number;
   order: number;
   title: string;
   score: number;
