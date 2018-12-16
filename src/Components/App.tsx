@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import QuestionsList from "./QuestionsList";
 import QuestionsLoaderHelper from "../Helpers/QuestionsLoader";
 import DateControl from "./DateControl";
@@ -45,9 +44,11 @@ export class App extends React.Component<AppContext> {
           <Grid justify="flex-start" container>
             <DateControl date={date} onSetDate={this.loadData} />
           </Grid>
-          <Paper>
-            <QuestionsList questions={data} />
-          </Paper>
+          <Grid justify="flex-start" container>
+            <Grid item xs={12}>
+              <QuestionsList questions={data} />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     );

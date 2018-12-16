@@ -1,7 +1,7 @@
 import React from "react";
 import IUser from "../Models/IUser";
 import Avatar from "../UI/Avatar";
-import Link from "../UI/Link";
+import Button from "../UI/Button";
 import Grid from "@material-ui/core/Grid";
 
 export interface UserInfoProps {
@@ -26,7 +26,7 @@ export default class UserInfo extends React.Component<UserInfoProps> {
         <Grid item xs={8}>
           <Grid container>{user.display_name}</Grid>
           <Grid container>
-            <Link href={user.link}>Profile</Link>
+            <Button href={user.link}>Profile</Button>
           </Grid>
         </Grid>
       </Grid>

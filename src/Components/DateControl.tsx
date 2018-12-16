@@ -52,7 +52,6 @@ export default class DateControl extends React.Component<
   onClickButton = () => {
     const onSetDate = this.props.onSetDate;
     if (onSetDate) {
-      window.console.log("click button", this.state.newDate);
       onSetDate(this.state.newDate);
     }
     this.setState({

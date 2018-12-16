@@ -8,13 +8,18 @@
     "build": "webpack --mode production",
     "watch": "webpack --mode development --watch"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aleksnick/bfg-test.git"
+  },
   "dependencies": {
     "@material-ui/core": "^3.6.2",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
     "immutable": "^4.0.0-rc.12",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "react": "^16.6.2",
+    "react-click-outside": "^3.0.1",
+    "react-dom": "^16.6.2",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1"
   },
@@ -23,6 +28,7 @@
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "@types/react": "^16.7.13",
+    "@types/react-click-outside": "^3.0.2",
     "@types/react-dom": "^16.0.11",
     "@types/react-redux": "^6.0.11",
     "@types/redux-actions": "^2.3.1",

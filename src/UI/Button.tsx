@@ -2,6 +2,7 @@ import React from "react";
 import UIButton from "@material-ui/core/Button";
 
 export interface ButtonProps {
+  href?: string;
   onClick?: () => void;
 }
 
@@ -14,9 +15,9 @@ export class Button extends React.Component<ButtonProps> {
   }
 
   render() {
-    const { onClick, children } = this.props;
+    const { href, onClick, children } = this.props;
     return (
-      <UIButton onClick={onClick} color="primary" variant="outlined">
+      <UIButton onClick={onClick} href={href} color="primary" variant="outlined">
         {children}
       </UIButton>
     );

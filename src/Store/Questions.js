@@ -1,3 +1,9 @@
+/**
+ * Тестовые данные, чтобы не превышать лимит по кол-ву запросов к API на stackoverflow.com
+ *
+ * @export
+ * @returns
+ */
 export function getQuestions() {
   return {
     items: [
