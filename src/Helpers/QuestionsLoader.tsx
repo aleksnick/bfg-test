@@ -24,7 +24,7 @@ export default class QuestionsLoaderHelper {
     onLoad: (questions: Questions) => void
   ) => {
     const unixDate = dateToUnix(date);
-    const url = `http://api.stackexchange.com/2.2/questions?pagesize=5&fromdate=${unixDate}&order=desc&sort=votes&tagged=react-redux&site=stackoverflow`;
+    const url = `http://api.stackexchange.com/2.2/questions?pagesize=${limit}&fromdate=${unixDate}&order=desc&sort=votes&tagged=react-redux&site=stackoverflow`;
     let res = {};
     axios.get(url).then(response => {
       const data = response.data["items"] as Array<IQuestion>;

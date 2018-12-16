@@ -47,7 +47,7 @@ export class App extends React.Component<AppContext> {
     return (
       <React.Fragment>
         <Grid justify="center" container spacing={16}>
-          <Grid item xs={4}>
+          <Grid item xs={12} md={8} lg={6}>
             <Typography variant="h6">
               5 самых популярных вопросов на Stackoverflow, содержащих строку
               "react-redux"
@@ -55,7 +55,7 @@ export class App extends React.Component<AppContext> {
           </Grid>
         </Grid>
         <Grid justify="center" container spacing={16}>
-          <Grid item xs={4}>
+          <Grid item xs={12} md={8} lg={6}>
             <Grid justify="flex-start" container>
               <DateControl date={date} onSetDate={this.loadData} />
             </Grid>
