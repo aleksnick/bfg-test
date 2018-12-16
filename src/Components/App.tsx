@@ -79,7 +79,7 @@ export class App extends React.Component<AppContext> {
 
   loadData = (date: string) => {
     const { setData, setDate } = this.props;
-    QuestionsLoaderHelper.load(date, data => {
+    QuestionsLoaderHelper.loadFromWeb(date, data => {
       setDate(date);
       setData(data);
     });
