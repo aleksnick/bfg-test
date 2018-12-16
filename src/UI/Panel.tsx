@@ -16,6 +16,9 @@ export enum PanelType {
 const styles = {
   success: {
     background: "#4caf50"
+  },
+  default: {
+    background: "#eeeeee"
   }
 };
 
@@ -44,7 +47,7 @@ export class Panel extends React.Component<PanelProps> {
 
     return (
       <UIPanel expanded={!!isOpen} onChange={this.onChange} color="primary">
-        <UIPanelSummary className={type === PanelType.Success ? classes["success"] : null} expandIcon={<ExpandMoreIcon />}>
+        <UIPanelSummary className={type === PanelType.Success ? classes["success"] : classes["default"]} expandIcon={<ExpandMoreIcon />}>
           <Grid container xs={12}>
             <Grid item xs>
               <Typography>{header}</Typography>
