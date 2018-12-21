@@ -14,8 +14,7 @@ export type AppInputs = AppProps & IStore;
 
 const mapStateToProps = (state: IStore, props: AppProps) => ({
   date: state.date,
-  data: state.data,
-  update: state.update
+  data: state.data
 });
 
 const mapDispatchToProps = {

@@ -10,7 +10,6 @@ import IDate from "./IDate";
  * @extends {IDate}
  */
 export default interface IStore extends IData, IDate {
-  update?: number;
 }
 
 export type ReduxStore = {[key: string]: {}};

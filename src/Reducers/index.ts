@@ -1,4 +1,3 @@
-import { Map } from "immutable";
 import { Actions } from "../Actions";
 import IStore from "../Models/IStore";
 
@@ -13,12 +12,10 @@ import IStore from "../Models/IStore";
 export default function reducer(state: IStore, action: Actions) {
   switch (action.type) {
     case "INIT":
-      const newStore = Map();
       return {
-        ...newStore,
+        ...state,
         data: action.data,
-        date: action.date,
-        update: 0
+        date: action.date
       };
     case "SET_DATA":
       return {
@@ -31,10 +28,15 @@ export default function reducer(state: IStore, action: Actions) {
         date: action.date
       };
     case "SET_SCORE":
-      state.data[action.questionId].score = action.score;
       return {
         ...state,
-        update: new Date().getTime()
+        data: {
+          ...state.data,
+          [action.questionId]: {
+            ...state.data[action.questionId],
+            score: action.score
+          }
+        }
       };
 
     default:
