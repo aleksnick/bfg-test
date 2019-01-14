@@ -1,6 +1,9 @@
 # BFG Group Test Work
 Test app with react-redux
 
+## Task
+[Task](materials/Tz_Front.pdf)
+
 ## Usage local
 You need install:
 * [Node.js](https://nodejs.org) and [Npm](https://www.npmjs.com/)
